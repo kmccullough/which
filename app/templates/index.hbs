@@ -1,0 +1,12 @@
+<ul class="menu">
+  {{#each this.model.turns as |turn turnIndex|}}
+    <li><LinkTo @route="choice" @model={{turnIndex}}>{{turn.name}}</LinkTo></li>
+  {{/each}}
+</ul>
+
+<button type="button"
+  {{on "click" (transition-to "choice-add")}}
+  {{in-named-element "footer-right"}}
+>
+  Add Choice
+</button>

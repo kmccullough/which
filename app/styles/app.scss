@@ -1,0 +1,149 @@
+$page-padding: 1rem;
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+  margin: 0;
+  font-size: 4vmin;
+}
+
+body {
+  font-family: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
+  padding: 0;
+  display: grid;
+  grid-template-areas:
+    'header'
+    'content'
+    'footer'
+  ;
+  grid-template-rows: fit-content(0) auto fit-content(0);
+}
+
+h1 {
+  background: #0d3349;
+  color: #fff;
+  margin: 0;
+  padding: .5rem 1rem;
+}
+
+h2 {
+  font-size: 2rem;
+  margin: 0 0 $page-padding 0;
+}
+
+button {
+  font-size: 1.2rem;
+  padding: .5rem;
+}
+
+input {
+  font-size: 1.2rem;
+}
+
+.menu {
+  list-style: none;
+  margin: -#{$page-padding * .5} -#{$page-padding};
+  padding: 0;
+  font-size: 1.8rem;
+}
+
+.menu :where(li) {
+  margin: 0;
+  padding: 0;
+  border-bottom: #092634 1px solid;
+}
+
+.menu :where(a) {
+  padding: $page-padding / 2 $page-padding;
+  text-decoration: none;
+  color: #000;
+  display: block;
+}
+
+.header,
+.content,
+.footer {
+  position: relative;
+  padding: $page-padding * .5 $page-padding;
+}
+
+.header {
+  grid-area: header;
+}
+
+.content {
+  grid-area: content;
+  overflow-y: auto;
+}
+
+.footer {
+  grid-area: footer;
+  background: #1b73a7;
+}
+
+.card-header {
+  color: #056391;
+}
+
+$choice-size: 4rem;
+
+.option-choice, .log {
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.option-choice {
+  font-size: $choice-size;
+}
+
+.log {
+  font-size: $choice-size * .3;
+  line-height: .9;
+  color: rgba(0, 0, 0, .4);
+}
+
+.log-2 {
+  font-size: $choice-size * .45;
+  color: rgba(0, 0, 0, .5);
+}
+
+.log-1 {
+  font-size: $choice-size * .6;
+  color: rgba(0, 0, 0, .6);
+}
+
+.option-choices {
+
+}
+
+.left {
+  float: left;
+}
+
+.right {
+  float: right;
+}
+
+.hang-left,
+.hang-right {
+  position: absolute;
+  bottom: calc(100% + #{$page-padding});
+  opacity: .5;
+}
+
+.hang-left *,
+.hang-right * {
+  font-size: .8rem;
+}
+
+.hang-right {
+  right: 0;
+}
+
+.card {
+  display: grid;
+  grid-template-rows: fit-content(0) auto;
+  height: 100%;
+  align-items: center;
+}

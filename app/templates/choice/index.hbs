@@ -1,0 +1,43 @@
+{{#let
+  (hash)
+  (get this.model.turns.content this.model.index)
+as | ctx choice |}}
+
+  {{page-title "Choice"}}
+
+  <div class="card">
+    <h2 class="card-header">{{choice.name}}</h2>
+
+    <div class="option-choices">
+      {{#each (slice choice.log (neg 4) -1) as |logged index|}}
+        <div class={{concat "log log-" (sub 3 index)}}>{{get choice.options logged}}</div>
+      {{/each}}
+      <h2 class="option-choice">{{get choice.options choice.choice}}</h2>
+    </div>
+
+    <button type="button"
+      {{on "click" (transition-to "choice.edit")}}
+      {{in-named-element "footer-hang-left"}}
+    >
+      Edit
+    </button>
+
+    <button type="button"
+      {{on "click" this.model.onDelete}}
+      {{in-named-element "footer-hang-left"}}
+    >
+      Delete
+    </button>
+
+    <button type="button"
+      {{pause-click}}
+      {{on "click" this.model.onChoose}}
+      {{in-named-element "footer-right"}}
+    >
+      Choose
+    </button>
+
+    {{outlet}}
+  </div>
+
+{{/let}}

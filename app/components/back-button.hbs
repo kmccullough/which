@@ -1,0 +1,8 @@
+{{#if this.isVisible}}
+  <button
+    type="button" {{did-insert this.onInit}}
+    {{on "click" this.onClick}}
+  >
+    {{#if (has-block)}}{{yield}}{{else}}Back{{/if}}
+  </button>
+{{/if}}

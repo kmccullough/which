@@ -1,7 +1,22 @@
 {{page-title "Which"}}
-
-{{!-- The following component displays Ember's default welcome message. --}}
-<WelcomePage />
-{{!-- Feel free to remove this! --}}
-
-{{outlet}}
+<h1 class="header">Which?</h1>
+<div class="content">
+  {{outlet}}
+</div>
+<div class="footer">
+  <div class="hang-left"
+    {{named-element "footer-hang-left"}}
+  />
+  <div class="hang-right"
+    {{named-element "footer-hang-right"}}
+  />
+  <div class="left"
+    {{named-element "footer-left"}}
+  >
+    <BackButton/>
+  </div>
+  <div class="right"
+    {{named-element "footer-right"}}
+  >
+  </div>
+</div>
