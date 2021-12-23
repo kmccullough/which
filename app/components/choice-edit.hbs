@@ -1,0 +1,73 @@
+{{#let
+  (concat (if @isEdit "Edit" "Add") " Choice")
+as | pageTitle |}}
+
+  {{page-title pageTitle}}
+
+  <div class="card">
+    <h2 class="card-header">{{pageTitle}}</h2>
+
+    <div>
+      <label>
+        <span class="label">Name</span>
+        <Input @type="text" @value={{@choice.name}} />
+      </label>
+
+      <ul class="choice-options">
+        {{#each @choice.options as |option index|}}
+          <li>
+            <Input @type="text"
+              @value={{mut (get @choice.options index)}}
+            />
+            <button type="button"
+              {{pause-click}}
+              {{on "click" (fn @onRemoveOption index)}}
+            >
+              Remove
+            </button>
+          </li>
+        {{else}}
+          <li class="no-options">No Options Yet. Click "Add Option".</li>
+        {{/each}}
+      </ul>
+
+      <div class="algorithm-options">
+        <RadioButton @name="algorithm" @value="shuffle"
+          @groupValue={{@choice.algorithm}} @changed={{set @choice "algorithm"}}
+          class="algorithm-shuffle">
+          Shuffle
+        </RadioButton>
+        <RadioButton @name="algorithm" @value="random"
+          @groupValue={{@choice.algorithm}} @changed={{set @choice "algorithm"}}
+          class="algorithm-random">
+          Random
+        </RadioButton>
+        <div class="algorithm-spread">
+          <label for="volume">Spread</label>
+          <Input @type="range" min="0" max="180"
+            @value={{mut @choice.spread}}
+          />
+        </div>
+      </div>
+
+      <button type="button"
+        {{pause-click}}
+        {{on "click" @onAddOption}}
+        {{in-named-element "footer-right"}}
+      >
+        Add Option
+      </button>
+
+      <button type="button"
+        {{pause-click}}
+        {{on "click" @onSaveChoice}}
+        {{in-named-element "footer-right"}}
+      >
+        Save Choice
+      </button>
+
+      {{yield}}
+    </div>
+  </div>
+
+{{/let}}

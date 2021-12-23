@@ -1,5 +1,5 @@
 import { helper } from '@ember/component/helper';
 
-export default helper(function sub([ a, b ]) {
+export default helper(function subHelper([ a, b ]) {
   return a - b;
 });

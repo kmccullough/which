@@ -1,51 +1,9 @@
-{{#let
-  (hash)
-  this.model.choice
-as | ctx choice |}}
-
-  {{page-title "Edit Choice"}}
-
-  <div class="card">
-    <h2 class="card-header">Edit Choice</h2>
-
-    <div>
-      <label>
-        <span class="label">Name</span>
-        <Input @type="text" @value={{choice.name}} />
-      </label>
-
-      <ul>
-        {{#each choice.options as |option index|}}
-          <li>
-            <Input @type="text" @value={{mut (get choice.options index)}} />
-            <button type="button"
-              {{pause-click}}
-              {{on "click" (fn this.model.onRemoveOption index)}}
-            >
-              Remove
-            </button>
-          </li>
-        {{/each}}
-      </ul>
-
-      <button type="button"
-        {{pause-click}}
-        {{on "click" this.model.onAddOption}}
-        {{in-named-element "footer-right"}}
-      >
-        Add Option
-      </button>
-
-      <button type="button"
-        {{pause-click}}
-        {{on "click" this.model.onSaveChoice}}
-        {{in-named-element "footer-right"}}
-      >
-        Save Choice
-      </button>
-
-      {{outlet}}
-    </div>
-  </div>
-
-{{/let}}
+<ChoiceEdit
+  @isEdit={{true}}
+  @choice={{this.model.choice}}
+  @onAddOption={{this.model.onAddOption}}
+  @onRemoveOption={{this.model.onRemoveOption}}
+  @onSaveChoice={{this.model.onSaveChoice}}
+>
+  {{outlet}}
+</ChoiceEdit>

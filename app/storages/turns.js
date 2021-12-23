@@ -8,6 +8,8 @@ Storage.reopenClass({
       {
         name: 'Boolean',
         options: [ 'No', 'Yes' ],
+        algorithm: 'random',
+        spread: 0,
       }
     ];
   }

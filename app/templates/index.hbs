@@ -1,6 +1,6 @@
 <ul class="menu">
-  {{#each this.model.turns as |turn turnIndex|}}
-    <li><LinkTo @route="choice" @model={{turnIndex}}>{{turn.name}}</LinkTo></li>
+  {{#each this.model.choices as |choice index|}}
+    <li><LinkTo @route="choice" @model={{index}}>{{choice.name}}</LinkTo></li>
   {{/each}}
 </ul>
 

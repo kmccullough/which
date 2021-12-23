@@ -34,10 +34,24 @@ h2 {
 button {
   font-size: 1.2rem;
   padding: .5rem;
+  margin: 0.05rem;
 }
 
 input {
   font-size: 1.2rem;
+}
+
+input:where([type='radio']) {
+  margin-top: -0.2rem;
+  vertical-align: middle;
+}
+
+input[type='radio']:not([checked]):not([aria-checked='true']) {
+  cursor: pointer;
+}
+
+input:where([type='range']) {
+  margin-left: 1.8rem;
 }
 
 .menu {
@@ -130,6 +144,10 @@ $choice-size: 4rem;
   position: absolute;
   bottom: calc(100% + #{$page-padding});
   opacity: .5;
+
+  :where(button) {
+    padding: 0.4rem;
+  }
 }
 
 .hang-left *,
@@ -146,4 +164,52 @@ $choice-size: 4rem;
   grid-template-rows: fit-content(0) auto;
   height: 100%;
   align-items: center;
+}
+
+.algorithm-options {
+  display: grid;
+  grid-template-areas:
+    'shuffle random nothing'
+    'spread spread spread'
+  ;
+  grid-template-columns: 1fr 1fr 1fr;
+  max-width: fit-content;
+  gap: 0.5rem;
+}
+
+.algorithm-shuffle {
+  grid-area: shuffle;
+}
+
+.algorithm-random {
+  grid-area: random;
+}
+
+.algorithm-spread {
+  grid-area: spread;
+  > :where(*) {
+    vertical-align: middle;
+  }
+}
+
+.choice-options {
+  list-style: none;
+  padding: 0;
+
+  > :where(li) {
+    margin-bottom: .2rem;
+
+    > :where(*) {
+      vertical-align: middle;
+    }
+  }
+
+  :where(button) {
+    font-size: .8rem;
+    padding: 0.2rem;
+  }
+}
+
+.no-options {
+  color: blueviolet;
 }

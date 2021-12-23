@@ -1,14 +1,14 @@
 import Route from '@ember/routing/route';
 
-import { storageFor } from 'ember-local-storage';
+import { inject } from '@ember/service';
 
 export default class ChoiceRoute extends Route {
 
-  @storageFor('turns') turns;
+  @inject choice;
 
   model() {
     return {
-      turns: this.turns,
+      choices: this.choice.choices,
     };
   }
 

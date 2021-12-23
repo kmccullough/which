@@ -2,21 +2,24 @@ import Route from '@ember/routing/route';
 
 import { inject } from '@ember/service';
 
+import { routeModel } from 'which/services/route-model';
+
 export default class ChoiceRoute extends Route {
 
-  @inject turn;
+  @inject choice;
 
+  @routeModel('choice')
   model({ id: index }) {
     return {
       index,
-      turns: this.turn.turns,
-      turn: this.turn.turns.content[index],
+      choices: this.choice.choices,
+      choice: this.choice.choices.content[index],
       onChoose: () => {
-        this.turn.choose(index);
+        this.choice.choose(index);
       },
       onDelete: () => {
         this.transitionTo('index');
-        this.turn.remove(index);
+        this.choice.remove(index);
       },
     };
   }
