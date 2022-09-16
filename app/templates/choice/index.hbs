@@ -2,42 +2,51 @@
   (hash)
   (get this.model.choices.content this.model.index)
 as | ctx choice |}}
+{{#let
+  (mod choice.log.length choice.options.length)
+as | count |}}
 
-  {{page-title "Choice"}}
+{{page-title "Choice"}}
 
-  <div class="card">
-    <h2 class="card-header">{{choice.name}}</h2>
-
-    <div class="option-choices">
-      {{#each (slice choice.log (neg 4) -1) as |logged index|}}
-        <div class={{concat "log log-" (sub 3 index)}}>{{get choice.options logged}}</div>
-      {{/each}}
-      <h2 class="option-choice">{{get choice.options choice.choice}}</h2>
-    </div>
-
-    <button type="button"
-      {{on "click" (transition-to "choice.edit")}}
-      {{in-named-element "footer-hang-left"}}
-    >
-      Edit
-    </button>
-
-    <button type="button"
-      {{on "click" this.model.onDelete}}
-      {{in-named-element "footer-hang-left"}}
-    >
-      Delete
-    </button>
-
-    <button type="button"
-      {{pause-click}}
-      {{on "click" this.model.onChoose}}
-      {{in-named-element "footer-right"}}
-    >
-      Choose
-    </button>
-
-    {{outlet}}
+<div class="card">
+  <h2 class="card-header">{{choice.name}}</h2>
+  <div class="option-choices">
+    {{#each (slice choice.log -4 -1) as |logged index|}}
+      <div class={{concat "log log-" (sub (min 3 (sub choice.log.length 1)) index) (if (eq count (sub (min 4 choice.log.length) index)) " log-top")}}>
+        {{get choice.options logged}}
+      </div>
+    {{/each}}
+    {{#if choice.log.length}}
+      <h2 class={{concat "option-choice" (if (eq count 1) " option-choice-top") (if (eq count 0) " option-choice-bottom")}}>
+        {{get choice.options choice.choice}}
+      </h2>
+    {{/if}}
   </div>
 
+  <button type="button"
+    {{on "click" (transition-to "choice.edit")}}
+    {{in-named-element "footer-hang-left"}}
+  >
+    Edit
+  </button>
+
+  <button type="button"
+    {{on "click" this.model.onDelete}}
+    {{in-named-element "footer-hang-left"}}
+  >
+    Delete
+  </button>
+
+  <button type="button"
+    {{pause-click}}
+    {{on "click" this.model.onChoose}}
+    {{in-named-element "footer-right"}}
+  >
+    Choose
+  </button>
+
+  {{outlet}}
+</div>
+
+{{/let}}
 {{/let}}

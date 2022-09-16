@@ -10,6 +10,10 @@ html, body {
 body {
   font-family: Helvetica, 'Trebuchet MS', Verdana, sans-serif;
   padding: 0;
+}
+
+.wrapper {
+  height: 100%;
   display: grid;
   grid-template-areas:
     'header'
@@ -125,6 +129,35 @@ $choice-size: 4rem;
 .log-1 {
   font-size: $choice-size * .6;
   color: rgba(0, 0, 0, .6);
+}
+
+.log,
+.option-choice {
+  $border: 0.05em dashed #888;
+  &-top,
+  &-bottom {
+    position: relative;
+    &::before {
+      content: ' ';
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 1.5em;
+      z-index: -1;
+    }
+  }
+  &-top {
+    &::before {
+      top: 0;
+      border-top: $border;
+    }
+  }
+  &-bottom {
+    &::before {
+      bottom: 0;
+      border-bottom: $border;
+    }
+  }
 }
 
 .option-choices {
